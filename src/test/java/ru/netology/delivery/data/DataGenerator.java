@@ -18,22 +18,21 @@ public class DataGenerator {
         return date;
     }
 
-    public static String generateCity(String locale) {
-        Faker faker = new Faker(new Locale(locale));
-        String city = faker.address().city();
-        return city;
+    public static String generateCity() {
+        var cities = new String[]{"Москва", "Санкт-Петербург", "Нижний Новгород", "Архангельск", "Пенза", "Орёл", "Саратов", "Екатеринбург", "Калуга"};
+
+        return cities[new Random().nextInt(cities.length)];
     }
 
     public static String generateName(String locale) {
-        // TODO: добавить логику для объявления переменной name и задания её значения, для генерации можно
-        // использовать Faker
-        return name;
+        var names = new String[]{"Иванова", "Петрова", "Сидорова", "Паутова", "Ремизова", "Фролова", "Дудина"};
+
+        return names[new Random().nextInt(names.length)];
     }
 
     public static String generatePhone(String locale) {
-        // TODO: добавить логику для объявления переменной phone и задания её значения, для генерации можно
-        // использовать Faker
-        return phone;
+        var faker = new Faker(new Locale(locale));
+        return faker.phoneNumber().phoneNumber();
     }
 
     public static class Registration {
@@ -41,9 +40,8 @@ public class DataGenerator {
         }
 
         public static UserInfo generateUser(String locale) {
-            // TODO: добавить логику для создания пользователя user с использованием методов generateCity(locale),
-            // generateName(locale), generatePhone(locale)
-            return user;
+            return new UserInfo(generateCity(), generateName(locale), generatePhone(locale));
+
         }
     }
 
